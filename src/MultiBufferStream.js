@@ -411,3 +411,5 @@ MultiBufferStream.prototype.getEndPosition = function() {
   }
   return this.buffers[this.bufferIndex].fileStart+this.byteLength;
 }
+
+export default MultiBufferStream;
