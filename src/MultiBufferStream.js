@@ -3,6 +3,7 @@
  */
 
 import DataStream from 'DataStream.js';
+import Log from './Log.js'
 
 /**
  * MultiBufferStream is a class that acts as a SimpleStream for parsing
