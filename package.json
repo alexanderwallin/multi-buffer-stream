@@ -2,7 +2,7 @@
   "name": "multi-buffer-stream",
   "version": "0.1.0",
   "description": "A wrapper holding several ArrayBuffers, but treated as a single stream",
-  "main": "dist/index.js",
+  "main": "dist/MultiBufferStream.js",
   "files": [
     "dist"
   ],
