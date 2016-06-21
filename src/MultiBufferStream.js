@@ -2,8 +2,10 @@
  * https://raw.githubusercontent.com/gpac/mp4box.js/master/src/buffer.js
  */
 
-import DataStream from 'DataStream.js';
-import Log from './Log.js'
+// import DataStream from 'DataStream.js';
+import DataStream from './DataStream.js';
+import './DataStream-read-struct.js';
+import Log from './Log.js';
 
 /**
  * MultiBufferStream is a class that acts as a SimpleStream for parsing
@@ -92,6 +94,8 @@ MultiBufferStream.prototype.reduceBuffer = function(buffer, offset, newLength) {
 */
 MultiBufferStream.prototype.insertBuffer = function(ab) {
   let to_add = true;
+  let lastIndex = 0;
+
   /* TODO: improve insertion if many buffers */
   for (let i = 0; i < this.buffers.length; i++) {
     let b = this.buffers[i];
@@ -142,6 +146,8 @@ MultiBufferStream.prototype.insertBuffer = function(ab) {
         break;
       }
     }
+
+    lastIndex = i
   }
   /* if the buffer has not been added, we can add it at the end */
   if (to_add) {
@@ -149,7 +155,7 @@ MultiBufferStream.prototype.insertBuffer = function(ab) {
     this.buffers.push(ab);
     /* if this new buffer is inserted in the first place in the list of the buffer,
        and the DataStream is initialized, make it the buffer used for parsing */
-    if (i === 0) {
+    if (lastIndex === 0) {
       this.buffer = ab;
     }
   }
